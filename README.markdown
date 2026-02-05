@@ -5,3 +5,4 @@ Useless repo.
 * cs106l
 * Autap 
 * data100
+* cs50ai
