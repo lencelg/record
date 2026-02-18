@@ -1,0 +1,7 @@
+Useless repo.
+* Autap
+* coursera-java-algorithm
+* cs106b
+* cs50ai
+* cs61a
+* data100
