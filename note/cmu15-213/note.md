@@ -31,6 +31,7 @@ signed：$$B2U(X) = -x_{w-1}*2^{w - 1} +\sum_{i = 0 } ^ {w - 2} {2^{i}* x_i}$$
 overflow is undefined behavior , nothing is guaranteed to be happened
 ![](./img/overflow%20give%20unprediable%20value%20in%20c.png "datalab isTmax failed example")
 ## IEEE floating point
+
 $$ v=(−1)^{s}*M*2^E $$
 ![](./img/ieee%20conversion.png "bit conversion")
 ![](./img/floating%20point.png "bit conversion")
