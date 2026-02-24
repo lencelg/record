@@ -37,4 +37,9 @@ $ v=(−1)^{s}*M*2^E $
 ![](./img/floating%20point.png "bit conversion")
 ![](./img/ieee%20conversion.png "visualization")
 ![](./img/full%20example.png "example")
+rounding
+* towards zero
+* round up
+* round down
+* nearest even(default)
 
