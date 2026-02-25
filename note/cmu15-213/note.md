@@ -83,12 +83,16 @@ reduced instruction set computer(RISC)
 * objdump
 # Program Optimization
 ## optimization
-* code motion/precomputation
-* strength reduction
-* sharing of common subexperssions
-* removing unnecessary procedure calls
-* exploiting instruction-level parallelism
-* dealing with conditionals
+* Code motion/precomputation
+* Strength reduction
+* Sharing of common subexperssions
+* Removing unnecessary procedure calls
+* Exploiting instruction-level parallelism
+* Dealing with conditionals(branch prediciton)
+* Loop unrolling
+  * Reassociated Computation
+  * Separate Accumulators
+* Vector instructions
 ## optimization blockers
 * procedure calls<br>
     complier treats procedure calls as black box, weak optimization 
