@@ -1,4 +1,4 @@
-# 信息的表示和处理
+# Representing and Manipulating Information
 ## basis
 |hex|decimal|binary|hex|decimal|binary|
 |:-----|:------|:---------|:-----|:------|:---------|
@@ -42,4 +42,39 @@ $ v=(−1)^{s}*M*2^E $
 * round up
 * round down
 * nearest even(default)
+# Machine-Level Representation of Programs
+complex instruction set computer(CISC)<br>
+reduced instruction set computer(RISC)
+<figure>
+  <img src="./img/main insruction set.png">
+  <figcaption  style="text-align: center; margin-top: 8px;">main instruction set</figcaption>
+</figure>
 
+
+<figure>
+  <img src="./img/complier process">
+  <figcaption  style="text-align: center; margin-top: 8px;">from c code to binary</figcaption>
+</figure>
+
+<figure>
+  <img src="./img/reg.png">
+  <figcaption  style="text-align: center; margin-top: 8px;">register(partial)</figcaption>
+</figure>
+
+## memory layout
+<figure>
+  <img src="./img/memory layout.png">
+</figure>
+
+### stack frame
+<figure>
+  <img src="./img/stack frame.png">
+</figure>
+
+* memory align
+### attack
+#### Code Injection
+![](./img/code%20injection%20attack.png)
+#### Return-Oriented Programming
+![](./img/gadgets.png)
+![](./img/rop.png)
