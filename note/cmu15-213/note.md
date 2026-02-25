@@ -78,3 +78,45 @@ reduced instruction set computer(RISC)
 #### Return-Oriented Programming
 ![](./img/gadgets.png)
 ![](./img/rop.png)
+#### tools
+* gdb
+* objdump
+# Program Optimization
+## optimization
+* code motion/precomputation
+* strength reduction
+* sharing of common subexperssions
+* removing unnecessary procedure calls
+* exploiting instruction-level parallelism
+* dealing with conditionals
+## optimization blockers
+* procedure calls<br>
+    complier treats procedure calls as black box, weak optimization 
+    ![](./img/procedule%20calls.png)
+    ![](./img/better%20performance.png)
+* ### memory alising
+    ```c
+    int fn (int *a, int *b)
+    {
+        *a = 3;
+        *b = 4;
+        return (*a + 5);
+    }
+
+    // 编译器会把以上代码优化成下面的样子么？不会！谁知道程序员会不会这么调用 f(&x,&x);
+    int fn (int *a, int *b)
+    {
+        *a = 3;
+        *b = 4;
+        return (3 + 5);
+    }
+
+    // 但是你可以帮助编译器，使用C99的restrict类型限定符，但还是需要开发者确保两个指针不指向同一数据
+    // https://gcc.gnu.org/onlinedocs/gcc/Restricted-Pointers.html
+    int fn (int *__restrict__ a, int *__restrict__ b)
+    {
+        *a = 3;
+        *b = 4;
+        return (*a + 5); // 这里会被优化为 return (3 + 5)
+    }
+    ```
