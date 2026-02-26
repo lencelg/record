@@ -152,3 +152,7 @@ miss rate
 hit rate 
 hit time 
 miss penalty
+## example
+![](./img/blocked%20matrix%20multiplication.png)
+Blocking : $1 / (4B) * n^3$<br>
+No Blocking : $9 / (8) * n^3$
