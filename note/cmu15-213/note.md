@@ -124,3 +124,31 @@ reduced instruction set computer(RISC)
         return (*a + 5); // 这里会被优化为 return (3 + 5)
     }
     ```
+# Memory hierarchy
+## RAM(random access memory)
+* SRAM
+* DRAM
+## I/O bus
+## disk
+![](./img/disk.png)
+## SSD
+![](./img/ssd)
+## Locality
+![](./img/locality.png)
+## Memory hierarchy
+![](./img/memory%20hierarchy.png)
+## Cache memory
+C = B * E * S<br>
+validate bit<br>
+tag bit
+
+cache miss
+* cold(compulsory) miss
+* conflict miss
+* capacity miss
+
+thrash<br>
+miss rate
+hit rate 
+hit time 
+miss penalty
