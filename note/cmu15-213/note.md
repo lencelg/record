@@ -156,3 +156,60 @@ miss penalty
 ![](./img/blocked%20matrix%20multiplication.png)
 Blocking : $1 / (4B) * n^3$<br>
 No Blocking : $9 / (8) * n^3$
+# Linking
+two main tasks
+* symbol resolution
+* relocation
+### ELF format
+![](./img/ELF.png)
+![](./img/ELF2.png)
+### Local variable
+* local non-static C variable
+  * store on stack(linker know nothing about it)
+* local C variable
+  * stored in either .bss or .data
+### symbols and rules
+strong symbols
+* precedures and initialized globals
+weak symbols
+* uninitialized globals
+three rules(be careful for tricky bug)
+* not more than one strong symbol with same name
+* one strong symbol and one weak symbol has the same name , choose the strong one
+* more than one weak symbols all has the same name , random choose one
+
+relocate entry<br>
+static library(.a)<br>
+* command line order matters!
+* Moral: put the libraries at the end of the commmand line.
+shared library(.so)
+### Library interpositioning
+intercept calls to arbitrary function
+* Complie time(#define)
+* Link time(-Wl)
+* run-time(library interpositioning, lysm, LD_PRELOADED environment variable)
+# Exceptional Control Flow
+Exception
+* interrupt
+* trap
+* fault
+* abort
+
+`syscall`<br>
+
+Process(instance of a running program)
+* Logical Control Flow
+* private address space<br>
+
+mode bit<br>
+> concurrent flow, concurrency<br>
+> mutiltasking, time slice, time slicing<br>
+> parallel flow, running in pararllel and parallel execution
+
+## Context switch
+### Process control
+PID(process id, positive number)<br>
+`pid_t getpid(void);` return pid<br>
+`pid_t getppid(void);` return parent pid
+
+![](./img/fork%20understanding.png)
