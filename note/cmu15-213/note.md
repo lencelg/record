@@ -189,15 +189,27 @@ intercept calls to arbitrary function
 * Link time(-Wl)
 * run-time(library interpositioning, lysm, LD_PRELOADED environment variable)
 # Exceptional Control Flow
+An exception is a transfer of control to the OS kernal in response to some event<br>
+![](./img/exception.png)
 Exception
-* interrupt
-* trap
-* fault
-* abort
+* Asynchronous Exceptions 
+  * interrupt
+    * time interrupt 
+    * I/O interrrupt
+* Synchronous Exceptions
+  * trap
+    * intentional
+    * system calls, breakpoint traps
+  * fault
+    * unintentional and possibly recoverable
+    * page faults, protection faults
+  * abort
+    * unintentional and unrecoverable
+    * illegal instruction
 
 `syscall`<br>
 
-Process(instance of a running program)
+A `process` is an instance of a running program
 * Logical Control Flow
 * private address space<br>
 
@@ -207,9 +219,36 @@ mode bit<br>
 > parallel flow, running in pararllel and parallel execution
 
 ## Context switch
+![](./img/context%20switch.png)
+A context is being in one of three states
+* running
+* stopped
+* terminated
 ### Process control
 PID(process id, positive number)<br>
-`pid_t getpid(void);` return pid<br>
-`pid_t getppid(void);` return parent pid
+```c
+pid_t getpid(void); //return pid
+pid_t getppid(void);//return parent pid
+``` 
+
+```c
+int fork(void);
+// return 0 to the child process, return child's pid to parent process
+```
 
 ![](./img/fork%20understanding.png)
+```c
+pid_t waitpid(pid_t pid, int *statusp, int options);
+pid_t wait(int *statusp);
+
+unsigned int sleep(unsigned int secs);
+int pause(void);
+
+int execve(const char *filename, const char *argv[], const char *envp[]);
+
+pid_t getpgrp(void);
+int setpgid(pid_t pid, pid_t pgid);
+
+int kill(pid_t pid, int sig);
+```
+### Signal
