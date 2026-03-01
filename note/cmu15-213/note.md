@@ -239,12 +239,14 @@ int fork(void);
 ![](./img/fork%20understanding.png)
 ```c
 pid_t waitpid(pid_t pid, int *statusp, int options);
-pid_t wait(int *statusp);
+pid_t wait(int *statusp); 
+// suspend current process until one of its children terminates
 
 unsigned int sleep(unsigned int secs);
 int pause(void);
 
 int execve(const char *filename, const char *argv[], const char *envp[]);
+// Loads and runs in the current process, call once and never return
 
 pid_t getpgrp(void);
 int setpgid(pid_t pid, pid_t pgid);
