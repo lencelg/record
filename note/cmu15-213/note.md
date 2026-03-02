@@ -311,6 +311,33 @@ int stat(const char *filename, struct stat *buf);
 int fstat(int fd, struct stat *buf);
 // return 0 if success else -1
 ```
+read directory 
+```c
+// example code
+ #include "csapp . h"
+ int main(int argc, char **argv)
+ {
+  DIR *Streamp;
+  struct dirent *dep;
+  streamp = Opendir(argv [1));
+  errno = 0;
+  while ((dep = readdir (streamp)) ! = NULL) {
+    printf("Fou卫d file: %s\n", dep->d_name);
+  }
+  if (errno ! = 0)
+  unix_error("readdir error");
+  Closedir(streamp);
+  exit(O);
+ }
+```
+* descriptor table 
+* open file table 
+* v-node table(shared)
+![](./img/classic.png)
+![](./img/child.png)
+### I/O relocate
+`int dup2(int oldfd, int newfd);// locate the newfd to the oldfd` 
+![](./img/io%20relocate)
 
 
 # Virtual Memory
