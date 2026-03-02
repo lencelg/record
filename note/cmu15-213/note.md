@@ -225,6 +225,12 @@ A context is being in one of three states
 * stopped
 * terminated
 ### Process control
+signal concepts
+* A signal is `pending` if sent but not yet received
+* A process can `block` the receipt of certain signal
+* A pending signal is received at most once
+* Kernal maintain pending and blocked bit vectors in the context of each process<br>
+`write` is the only async-signal-safe output function
 PID(process id, positive number)<br>
 ```c
 pid_t getpid(void); //return pid
@@ -253,4 +259,58 @@ int setpgid(pid_t pid, pid_t pgid);
 
 int kill(pid_t pid, int sig);
 ```
-### Signal
+### non-local jump
+```c
+jup_buf env;
+int setjmp(jmp_buf env); // return 0
+int sigsetjmp(sigjmp_buf env, int savesigs); // return non-zero
+
+void longjmp(jmp_buf env, int retval); // never return
+void siglongjmp(sigjmp_buf env, int retval); // never return
+```
+# Unix I/O
+Basic File type
+* regular file(text file and binary file)
+* directory
+* socket
+```c
+int open(char *filename, int flags, mode_t mode);
+int close(int fd);
+ssize_t read(int fd, void *buf, size_t n);//返回：若成功则为读的字节数，若 EOF 则为 0, 若出错为 一 1 。
+ssize_t write(int fd, const void *buf, size_t n);//返回：若成功则为写的字节数，若出错则为 一 1 。
+```
+RIO
+```c
+void rio_readinitb(rio_t *rp, int fd);
+
+ssize_t rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen);
+ssize_t rio_readnb(rio_t *rp, void *usrbuf, size_t n);
+
+ssize_t rio_writen(int fd, void *usrbuf, size_t n);
+```
+file metadata
+```c
+struct stat
+{
+    dev_t           st_dev;     // Device
+    ino_t           st_ino;     // inode
+    mode_t          st_mode;    // Protection & file type
+    nlink_t         st_nlink;   // Number of hard links
+    uid_t           st_uid;     // User ID of owner
+    gid_t           st_gid;     // Group ID of owner
+    dev_t           st_rdev;    // Device type (if inode device)
+    off_t           st_size;    // Total size, in bytes
+    unsigned long   st_blksize; // Blocksize for filesystem I/O
+    unsigned long   st_blocks;  // Number of blocks allocated
+    time_t          st_atime;   // Time of last access
+    time_t          st_mtime;   // Time of last modification
+    time_t          st_ctime;   // Time of last change
+}
+
+int stat(const char *filename, struct stat *buf);
+int fstat(int fd, struct stat *buf);
+// return 0 if success else -1
+```
+
+
+# Virtual Memory
