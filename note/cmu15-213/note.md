@@ -335,9 +335,48 @@ read directory
 * v-node table(shared)
 ![](./img/classic.png)
 ![](./img/child.png)
-### I/O relocate
+### I/O redirection
 `int dup2(int oldfd, int newfd);// locate the newfd to the oldfd` 
 ![](./img/io%20relocate)
-
+```c
+#include <stdio.h>
+extern FILE *stdin;     // descriptor 0
+extern FILE *stdout;    // descriptor 1
+extern FILE *stderr;    // descriptor 2
+int main()
+{
+    fprintf(stdout, "Hello, Da Wang\n");
+}
+```
 
 # Virtual Memory
+### basic concepts
+![](./img/vm%20concept)
+some notation of the structure of DRAM
+* larger page size: usually 4K~2M
+* Fully associative: any virual page can be stored in any physical page, no limitation
+* use write-back instead of write-through<br>
+
+PS(from [小土刀](https://www.wdxtub.com/blog/csapp/thin-csapp-7#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87))
+* Write-through: 命中后更新缓存，同时写入到内存中
+* Write-back: 直到这个缓存需要被置换出去，才写入到内存中（需要额外的 dirty bit 来表示缓存中的数据是否和内存中相同，因为可能在其他的时候内存中对应地址的数据已经更新，那么重复写入就会导致原有数据丢失）
+
+Virtual Page
+* allocated
+* cached
+* uncached
+![](./img/three%20status)
+
+Page Table Entry(PTE)
+* page hit
+* page fault
+  * page fault handler
+  * deamand paging
+
+Adavantage
+* simplify linking
+* simplify loading
+* simplify sharing
+* simplify memory allocation
+
+![](./img/found%20page)
