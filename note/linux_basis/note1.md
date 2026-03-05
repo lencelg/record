@@ -166,3 +166,73 @@ main concept of this lecture
 * dotfile
 * ssh
 * terminal simulator
+## Version Control
+git uses SHA-1 hash<br>
+
+git usage(modified from [missing-semseter-cn.github.io](https://github.com/missing-semester-cn/missing-semester-cn.github.io/blob/ff760c0205a0df65071a7a672fe1a574376b350e/_2020/version-control.md))
+- `git branch`: 显示分支
+- `git branch <name>`: 创建分支
+- `git checkout -b <name>`: 创建分支并切换到该分支
+    - 相当于 `git branch <name>; git checkout <name>`
+- `git merge <revision>`: 合并到当前分支
+- `git mergetool`: 使用工具来处理合并冲突
+- `git rebase`: 将一系列补丁变基（rebase）为新的基线
+---
+- `git remote`: 列出远端
+- `git remote add <name> <url>`: 添加一个远端
+- `git push <remote> <local branch>:<remote branch>`: 将对象传送至远端并更新远端引用
+- `git branch --set-upstream-to=<remote>/<remote branch>`: 创建本地和远端分支的关联关系
+- `git fetch`: 从远端获取对象/索引
+- `git pull`: 相当于 `git fetch; git merge`
+- `git clone`: 从远端下载仓库
+---
+- `git commit --amend`: 编辑提交的内容或信息
+- `git reset HEAD <file>`: 恢复暂存的文件
+- `git checkout -- <file>`: 丢弃修改
+- `git restore`: git2.32 版本后取代 git reset 进行许多撤销操作
+---
+- `git config`: Git 是一个 [高度可定制的](https://git-scm.com/docs/git-config) 工具
+- `git clone --depth=1`: 浅克隆（shallow clone），不包括完整的版本历史信息
+- `git add -p`: 交互式暂存
+- `git rebase -i`: 交互式变基
+- `git blame`: 查看最后修改某行的人
+- `git stash`: 暂时移除工作目录下的修改内容
+- `git bisect`: 通过二分查找搜索历史记录
+- `.gitignore`: [指定](https://git-scm.com/docs/gitignore) 故意不追踪的文件
+## Debugging and Profiling
+debugging tools
+* pgb (for python)
+* gdb
+* lldb
+* trace(tracking system calls in linux)
+---
+static analysis
+* code linting
+* code formatters
+* shellcheck (for shell script)
+---
+profiling
+* time
+--- 
+memory 
+* valgrind
+---
+other tools in linux
+* df
+* free
+* btop
+## Metaprogramming
+build system
+* make
+* cmake
+
+Dependency managment<br>
+Continuous integration<br>
+test concept
+* test suite: all the test
+* test unit: test specific unit
+* intergation test: test if different parts work fine with each other
+* regression test: test  for solving bug
+* Mocking: replace content unrelated to test
+--- 
+github action could be used as a simple CI system
