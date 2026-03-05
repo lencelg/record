@@ -351,11 +351,18 @@ int main()
 
 # Virtual Memory
 ### basic concepts
+Adavantages
+* use main memory efficiently
+* simplifies memory management
+* isolate address spaces
+
 ![](./img/vm%20concept)
-some notation of the structure of DRAM
-* larger page size: usually 4K~2M
+DRAM cache organization
+* large page size: usually 4K~2M
 * Fully associative: any virual page can be stored in any physical page, no limitation
 * use write-back instead of write-through<br>
+Page table
+* 
 
 PS(from [小土刀](https://www.wdxtub.com/blog/csapp/thin-csapp-7#%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87))
 * Write-through: 命中后更新缓存，同时写入到内存中
@@ -373,10 +380,5 @@ Page Table Entry(PTE)
   * page fault handler
   * deamand paging
 
-Adavantage
-* simplify linking
-* simplify loading
-* simplify sharing
-* simplify memory allocation
 
 ![](./img/found%20page)
