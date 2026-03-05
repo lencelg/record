@@ -236,3 +236,32 @@ test concept
 * Mocking: replace content unrelated to test
 --- 
 github action could be used as a simple CI system
+## Security and Cryptography
+Entropy: meansure of uncertainty<br>
+
+Cryptographic hash function(example: SHA-1)
+```
+hash(value: array<byte>) -> vector<byte, N>  (N对于该函数固定)
+```
+Symmetric Encryption
+```
+keygen() -> key  (这是一个随机方法)
+
+encrypt(plaintext: array<byte>, key) -> array<byte>  (输出密文)
+decrypt(ciphertext: array<byte>, key) -> array<byte>  (输出明文)
+```
+Public-key Cryptography(example: GPG)
+```
+keygen() -> (public key, private key)  (这是一个随机方法)
+
+encrypt(plaintext: array<byte>, public key) -> array<byte>  (输出密文)
+decrypt(ciphertext: array<byte>, private key) -> array<byte>  (输出明文)
+
+sign(message: array<byte>, private key) -> array<byte>  (生成签名)
+verify(message: array<byte>, signature: array<byte>, public key) -> bool  (验证签名是否是由和这个公钥相关的私钥生成的)
+```
+Multi-factor authentication(example: 2FA)
+## other
+```console
+key map:  Escape：Caps Lock
+```

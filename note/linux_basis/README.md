@@ -1,4 +1,3 @@
-made from the following material<br>
-* mit missing-semester
-
-PS : [link to missing-semester](https://github.com/missing-semester-cn/missing-semester-cn.github.io/tree/master)
+note|material made from|
+|---|---|
+[note1](note1.md)|[mit-missing-semester](https://github.com/missing-semester-cn/missing-semester-cn.github.io/tree/master)|
