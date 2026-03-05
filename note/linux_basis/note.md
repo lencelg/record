@@ -1,21 +1,126 @@
 # Linux user basis
 ## MIT missing-semester
+PS : partial note from [missing-semester-cn-github.io](https://github.com/missing-semester-cn/missing-semester-cn.github.io/tree/master)<br>
+### basic introduction
 shell : cli interface, interact with system and do work with it<br>
 sudo concept
 ```bash
 #  basic navigation
-cd      # go to home dir
-cd ..   # go to father dir
-cd .    # go to current dir
-pwd     # print current dir
-cd /    # go to / dir
-cd ~    # same as the first one
-ls      # print the content in the current dir
+cd                              # go to home dir
+cd ..                           # go to father dir
+cd .                            # go to current dir
+pwd                             # print current dir
+cd /                            # go to / dir
+cd ~                            # same as the first one
+ls                              # print the content in the current dir
+mkdir somedir                   # make a dir called somedir 
+rmdir somedir                   # remove a empty dir called somedir
+rm something                    # remove a something(could be dir as well, be careful to deal with rm command)
+touch filename                  # create a empty file named filename
+
+cd -                            # go to previous dir (could be import one !)
+
 
 #  basic command
+echo something >> somefile      # append something to the end of somefile
 man                             # manual page
+mv                              # rename or mv somthing
+cp                              # copy a file to a location
 cat < hello.txt                 # < and > stands for i/o redirction
 cat < hello.txt > hello1.txt
 ls -l | tail -nl                # | operation connect one output to another programme input
 ```
+### Shell script basis
+```bash
+foo=bar         # assign a variable
+echo "$foo"     # print bar
+echo '$foo'     # print $foo
+# create a function called mcd
+mcd () {         
+    mkdir -p "$1"
+    cd "$1"
+}
+$0              # shell script name
+$1 to $9        # first argument to nine argument
+$@              # all the argument
+$#              # the argument number
+$?              # the return val of the previous command
+$$              # 当前脚本的进程识别码
+!!              # 完整的上一条命令，包括参数。常见应用：当你因为权限不足执行命令失败时，可以使用 `sudo !!` 再尝试一次。
+$_              # 上一条命令的最后一个参数。如果你正在使用的是交互式 shell，你可以通过按下 `Esc` 之后键入 . 来获取这个值。
 
+false || echo "Oops, fail"
+# Oops, fail
+
+true || echo "Will not be printed"
+#
+
+true && echo "Things went well"
+# Things went well
+
+false && echo "Will not be printed"
+#
+
+false ; echo "This will always run"
+# This will always run
+
+#!/bin/bash
+
+echo "Starting program at $(date)" # command substitution
+
+echo "Running program $0 with $# arguments with pid $$"
+
+for file in "$@"; do
+    grep foobar "$file" > /dev/null 2> /dev/null
+    # 如果模式没有找到，则grep退出状态为 1
+    # 我们将标准输出流和标准错误流重定向到Null，因为我们并不关心这些信息
+    if [[ $? -ne 0 ]]; then  # check if not equal 0 , use [[]] instead of []
+        echo "File $file does not have any foobar, adding one"
+        echo "# foobar" >> "$file"
+    fi
+done
+
+# 通配符 - 当你想要利用通配符进行匹配时，你可以分别使用 `?` 和 `*` 来匹配一个或任意个字符。例如，对于文件 `foo`, `foo1`, `foo2`, `foo10` 和 `bar`, `rm foo?` 这条命令会删除 `foo1` 和 `foo2` ，而 `rm foo*` 则会删除除了 `bar` 之外的所有文件。
+# 花括号 `{}` - 当你有一系列的指令，其中包含一段公共子串时，可以用花括号来自动展开这些命令。这在批量移动或转换文件时非常方便。
+
+convert image.{png,jpg}
+# 会展开为
+convert image.png image.jpg
+
+cp /path/to/project/{foo,bar,baz}.sh /newpath
+# 会展开为
+cp /path/to/project/foo.sh /path/to/project/bar.sh /path/to/project/baz.sh /newpath
+
+# 也可以结合通配使用
+mv *{.py,.sh} folder
+# 会移动所有 *.py 和 *.sh 文件
+
+mkdir foo bar
+
+# 下面命令会创建 foo/a, foo/b, ... foo/h, bar/a, bar/b, ... bar/h 这些文件
+touch {foo,bar}/{a..h}
+touch foo/x bar/y
+# 比较文件夹 foo 和 bar 中包含文件的不同
+diff <(ls foo) <(ls bar)
+# 输出
+# < x
+# ---
+# > y
+```
+
+<!-- Lastly, pipes `|` are a core feature of scripting. Pipes connect one program's output to the next program's input. We will cover them more in detail in the data wrangling lecture. -->
+
+you can specify the interpreter of the shell scirpt, take the python file an example
+```python
+#!/usr/local/bin/python
+import sys
+for arg in reversed(sys.argv[1:]):
+    print(arg)
+```
+somthing tools 
+* find
+* fd
+* fasd
+* autojump<br>
+
+Crtl + r use of history search (powerful tool, use with fzf) 
