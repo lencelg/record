@@ -1,4 +1,5 @@
-Useless repo.
+Useless record
+* mit-missing-semester
 * Autap
 * coursera-java-algorithm
 * cs106b
