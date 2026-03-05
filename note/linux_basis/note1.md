@@ -1,7 +1,7 @@
 # Linux user basis
-## MIT missing-semester
+# MIT missing-semester
 PS : partial note from [missing-semester-cn-github.io](https://github.com/missing-semester-cn/missing-semester-cn.github.io/tree/master)<br>
-### basic introduction
+## basic introduction
 shell : cli interface, interact with system and do work with it<br>
 sudo concept
 ```bash
@@ -24,13 +24,14 @@ cd -                            # go to previous dir (could be import one !)
 #  basic command
 echo something >> somefile      # append something to the end of somefile
 man                             # manual page
+tldr                            # simplified version of manual page with example
 mv                              # rename or mv somthing
 cp                              # copy a file to a location
 cat < hello.txt                 # < and > stands for i/o redirction
 cat < hello.txt > hello1.txt
 ls -l | tail -nl                # | operation connect one output to another programme input
 ```
-### Shell script basis
+## Shell script basis
 ```bash
 foo=bar         # assign a variable
 echo "$foo"     # print bar
@@ -110,17 +111,58 @@ diff <(ls foo) <(ls bar)
 
 <!-- Lastly, pipes `|` are a core feature of scripting. Pipes connect one program's output to the next program's input. We will cover them more in detail in the data wrangling lecture. -->
 
-you can specify the interpreter of the shell scirpt, take the python file an example
+you can specify the interpreter of the shell scirpt, take the python file as example
 ```python
 #!/usr/local/bin/python
 import sys
 for arg in reversed(sys.argv[1:]):
     print(arg)
 ```
-somthing tools 
+some tools for finding
+* fd (recommanded)
 * find
-* fd
 * fasd
 * autojump<br>
 
+shellcheck : tool for analysis shell script<br>
 Crtl + r use of history search (powerful tool, use with fzf) 
+
+## vim
+since i am a neovim user, only few notes will be made
+* H (go to first line of the screen)， M (middle)， L (bottom)
+* visualize chunk：Ctrl+v (useful one)
+* s replace char(reminder)
+* u undo, `<C-r>` redo
+* %s/foo/bar/g # replace foo to bar in the file
+* :sp/ :vsp split window
+---
+for shell
+* bash: set -o vi
+* zsh:  bindkey -v
+* fish: fish_vi_key_bindings
+* general: export EDITOR=vim
+
+## Date Wrangling
+tools
+* grep
+* sed
+* awk
+* sort
+* bc
+---
+basic regualr experssion
+* .             match any char except the new line
+* \*            match zero time or more
+* \+            match at least one time
+* [abc]         match one of abc
+* (RX1|RX2)     match reuslt of RX1 or RX2
+* ^             match end of the line
+* $             match begin of the line
+## command line environment 
+main concept of this lecture
+* process and signal (more detail in csapp tiny shell lab)
+* tmux tool
+* alias
+* dotfile
+* ssh
+* terminal simulator
